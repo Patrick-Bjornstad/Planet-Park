@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container p-3">
+    <h1>Welcome to Planet Park, {{ request.user }}!</h1>
+    <p>Planet Park is a web application that allows users to explore the great variety of National Parks across the United States, and hopefully discover some new places to visit. The site consists of two main components: park discovery and park reviews.</p>
+    <p>The <a href="/discovery/">Discovery</a> page allows users to find new parks using a variety of filters, such as location and available activities. Directly from this page users can navigate to National Park specific information pages with detailed information about each park, including important alerts, current weather, and suggestions for specific activities across the park!</p>
+    <p>The <a href="/reviews/">Reviews</a> page allows users to share and rate their experiences with the rest of the site to inspire others to go as well! You can explore the different reviews posted by users across the site or choose to write a review of your own. You can even attach your own photos of your experience to the review!</p>
+    <p>Get started at one of the links below:</p>
+    <div class="row">
+        <a href="/discovery/" class="col m-3">
+        <div class="col text-center font-weight-bolder" style="height: 150px; color: white; font-size: 42px; padding-top: 40px; background-color: #0498E3;">
+            Discover Parks
+        </div>
+        </a>
+        <a href="/reviews/" class="col m-3">
+        <div class="text-center bg-success font-weight-bolder" style="height: 150px; color: white; font-size: 42px; padding-top: 40px; background-color: #689F38;">
+            Write/Read Reviews
+        </div>
+        </a>
+    </div>
+</div>
+{% endblock %}

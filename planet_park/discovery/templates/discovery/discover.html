@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+{% load plotly_dash %}
+
+{% block content %}
+<div class="container p-3">
+    <h1>National Park Discovery</h1>
+    <p>Use this page to discover US National Parks meeting your criteria. Filter parks by topic or available activities, price of entry, or state. Topics and activities are AND conditions (matches only parks with all selected topics/activities) while state is an OR condition (matches parks in any of the states selected). Enter your current location to calculate the distance to each listed park! You may also sort the parks by any of the listed attributes.</p>
+    <p>Click on the name of any of the listed parks to be directed to an information page with additional details regarding the specific park, including weather, potential important alerts, and more.</p>
+    <div>
+        {% plotly_app name="DiscoverTable" ratio=3 %}
+    </div>
+</div>
+{% endblock %}

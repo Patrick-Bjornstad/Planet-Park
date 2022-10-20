@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container p-3">
+    <h1>Posted Reviews</h1>
+    <div><a href="create/">Write a Review</a></div>
+    {% for review in reviews %}
+        <hr>
+        <div class="pl-3">
+            <h3>{{ review.title }}</h3>
+            <h6>Written by {{ review.author }} on {{ review.date }}</h6>
+            <h6>Park: {{ review.park }}</h6>
+            <p>{{ review.body }}</p>
+            <div class="row">
+                <div class="col">
+                    {% if review.image1 %}
+                        <img src="{{ url }}{{ review.image1 }}" class="w-100">
+                    {% endif %}
+                </div>
+                <div class="col">
+                    {% if review.image2 %}
+                        <img src="{{ url }}{{ review.image2 }}" class="w-100">
+                    {% endif %}
+                </div>
+                <div class="col">
+                    {% if review.image3 %}
+                        <img src="{{ url }}{{ review.image3 }}" class="w-100">
+                    {% endif %}
+                </div>
+            </div>
+            <h6 class="pt-3">Rating: {{ review.rating }}/5.0</h6>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

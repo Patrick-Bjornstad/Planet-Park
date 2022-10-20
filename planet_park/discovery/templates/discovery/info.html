@@ -1,0 +1,102 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container p-3">
+    <h1>{{ park.name }}</h1>
+    <hr>
+    <div class="row pl-3 pr-3">
+        <div class="col-lg-4">
+            <h4>Basic Information</h4>
+            <div id="info-container" style="height: 220px;">
+                <div><a href="{{ park.url }}">Official Site</a></div>
+                <div>{{ park.address }}</div>
+                <div class="pt-2">Phone: {{ park.phone }}</div>
+                <div>Email: {{ park.email }}</div>
+                <div class="pt-2">Entry Fee: ${{ park.min_price }} - ${{ park.max_price }}</div>
+                <div class="pt-2"><a href="/reviews/create/{{ park.code }}">Write a review for this park</a></div>
+                <div>Average Rating: {{ avg_rating }}</div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <h4>Associated Topics</h4>
+            <div id="topics-list" class="overflow-auto" style="height: 220px;">
+                <ul>
+                    {% for topic in topics %}
+                    <li>{{ topic.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <h4>General Activities</h4>
+            <div id="activities-list" class="overflow-auto" style="height: 220px;">
+                <ul>
+                    {% for activity in activities %}
+                    <li>{{ activity.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row pl-3 pr-3">
+        <div class="col-6">
+            <h4>Important Alerts</h4>
+            <div id="alerts-list">
+                <ul>
+                    {% for alert in alerts %}
+                    <li><a href="{{ alert.url }}">{{ alert.lastIndexedDate }}: {{ alert.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-6">
+            <h4>Weather</h4>
+            <table class="table">
+                <tbody>
+                    <tr class="table-secondary">
+                        <th class="col-6">Current</th>
+                        <th class="col-6">Tomorrow</th>
+                    </tr>
+                    <tr>
+                        <td class="col-6">{{ weather.current.weather.0.main }}, {{ weather.current.temp }} F, {{ weather.current.humidity }}% Humidity</td>
+                        <td class="col-6">{{ weather.daily.1.weather.0.main }}, {{ weather.daily.1.temp.day }} F, {{ weather.daily.1.humidity }}% Humidity</td>
+                    </tr>
+                    <tr class="table-secondary">
+                        <th class="col-6">In 2 Days</th>
+                        <th class="col-6">In 3 Days</th>
+                    </tr>
+                    <tr>
+                        <td class="col-6">{{ weather.daily.2.weather.0.main }}, {{ weather.daily.2.temp.day }} F, {{ weather.daily.2.humidity }}% Humidity</td>
+                        <td class="col-6">{{ weather.daily.3.weather.0.main }}, {{ weather.daily.3.temp.day }} F, {{ weather.daily.3.humidity }}% Humidity</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+    <div class="row pl-3 pr-3">
+        <div class="col">
+            <h4>10 Things To Do</h4>
+            <table class="table">
+                <thead>
+                    <tr class="table-secondary">
+                        <th class="col-3">Name</th>
+                        <th class="col-6">Description</th>
+                        <th class="col-3">Image</th>
+                    </tr>
+                </thead>
+                <tbody class="overflow-auto" style="height: 500px">
+                    {% for thing in things_to_do %}
+                    <tr>
+                        <td class="col-3"><a href="{{ thing.url }}">{{ thing.title }}</a></td>
+                        <td class="col-6">{{ thing.shortDescription }}</td>
+                        <td class="col-3"><img src="{{ thing.images.0.url }}" class="w-100"></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
